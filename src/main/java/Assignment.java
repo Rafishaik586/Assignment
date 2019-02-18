@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -30,17 +31,21 @@ public class Assignment {
 			  driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
 				
 			  driver.findElement(By.partialLinkText("Wikipedia")).click();
-			  Thread.sleep(1000);
+			  //Thread.sleep(1000);
+			  driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS); 
 			  String wikiName = driver.findElement(By.xpath("//*[@class='infobox vevent']//tr//th[contains(text(),'Directed by')]//following-sibling::td")).getText().toString();
 			  System.out.println(wikiName);
 			     driver.navigate().back();
-			     Thread.sleep(2000);
+			     //Thread.sleep(2000);
+			     driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS); 
 			     driver.navigate().refresh();
 			     driver.findElement(By.partialLinkText("IMDb")).click();
-			  Thread.sleep(1000);
+			  //Thread.sleep(1000);
+			     driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS); 
 			  String imdbName = driver.findElement(By.xpath("//div[@class='credit_summary_item']//h4[contains(text(),'Director')]//following-sibling::a")).getText().toString();
 			  System.out.println(imdbName);
-			  Thread.sleep(1000);
+			  //Thread.sleep(1000);
+			  driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS); 
 			if(wikiName.matches(imdbName))
 			  {
 			   isSameName=true;
